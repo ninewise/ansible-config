@@ -1,0 +1,7 @@
+---
+- name: Set-up an Arch-Linux desktop with XMonad and generally useful programs.
+  hosts: all
+
+  roles:
+    - vim
+

@@ -1,0 +1,10 @@
+---
+- name: Install git
+  pacman: name=git state=present
+
+- name: Configure git username
+  shell: git config --global user.name "Felix Van der Jeugt"
+ 
+- name: Configure git email
+  shell: git config --global user.email "felix.vanderjeugt@gmail.com"
+
