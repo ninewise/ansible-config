@@ -1,0 +1,6 @@
+---
+- name: Install the user felix
+  become_user: root
+  user: name=felix
+        comment="{{full_name}}"
+        groups=wheel,network,uucp,storage,users,audio,optical,power

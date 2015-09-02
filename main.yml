@@ -1,7 +1,12 @@
 ---
 - name: Set-up an Arch-Linux desktop with XMonad and generally useful programs.
   hosts: all
+  user: felix
 
   roles:
-    - vim
+    - user
+    - zsh
+    #- vim
 
+  vars_files:
+    - vars/main.yml

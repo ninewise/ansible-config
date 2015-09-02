@@ -2,3 +2,19 @@
 - name: Install VIM package
   pacman: name=vim state=present
   
+- name: Add the vimrc
+  copy: src=vimrc dest=~/.vim/vimrc
+  remote_user: felix
+
+- name: Make directories for swap files
+  file: path=~/.vim/tmp/swap/ state=directory mode=0755
+  remote_user: felix
+
+- name: Make directory for backup files.
+  file: path=~/.vim/tmp/backup/ state=directory mode=0755
+  remote_user: felix
+
+- name: Install stuff using Vundle
+  shell: vim +PluginInstall +qall
+  remote_user: felix
+
