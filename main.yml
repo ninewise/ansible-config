@@ -6,13 +6,32 @@
   vars_files:
     - vars/main.yml
 
+  vars_prompt:
+    - name: "user_password"
+      prompt: "Enter the password for the felix user"
+      private: yes
+      encrypt: "md5_crypt"
+      confirm: yes    
+      salt_size: 7
+
   tasks:
     - name: Install base development tools
       pacman: name=base-devel state=present
 
+#    - name: Install pip2 for python packages used by ansible
+#      pacman: name=python2-pip state=present
+#
+#    - name: Install virtualenv for python packages used by ansible
+#      pacman: name=python2-virtualenv state=present
+#
+#    - name: Install passlib for encrypted passwords
+#      pip: name=passlib state=present
+#      executable: pip2
+
     - name: Install the user felix
       user: name=felix
             comment="{{full_name}}"
+            password="{{user_password}}"
             groups=wheel,network,uucp,storage,users,audio,optical,power
 
     - name: Move public ssh keys to the authorized keys
