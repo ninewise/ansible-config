@@ -11,7 +11,7 @@
       prompt: "Enter the password for the felix user"
       private: yes
       encrypt: "md5_crypt"
-      confirm: yes    
+      confirm: yes
       salt_size: 7
 
   tasks:
@@ -39,5 +39,6 @@
   roles:
     - zsh
     - vim
+    - ntp
     - xmonad
 

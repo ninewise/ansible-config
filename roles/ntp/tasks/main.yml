@@ -1,0 +1,9 @@
+---
+- name: Configure NTP servers
+  copy: src=timesyncd.conf dest=/etc/systemd/timesyncd.conf
+  remote_user: root
+
+- name: Set-up time synchronization
+  command: timedatectl set-ntp true
+  remote_user: root
+
