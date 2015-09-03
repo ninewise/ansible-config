@@ -7,6 +7,9 @@
     - vars/main.yml
 
   tasks:
+    - name: Install base development tools
+      pacman: name=base-devel state=present
+
     - name: Install the user felix
       user: name=felix
             comment="{{full_name}}"
@@ -26,4 +29,4 @@
 
   roles:
     - zsh
-    #- vim
+    - vim

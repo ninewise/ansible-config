@@ -1,6 +1,7 @@
 ---
 - name: Install Zsh
   pacman: name=zsh state=present
+  remote_user: root
 
 - name: Add Zsh configuration
   copy: src=zshrc dest=~/.zshrc

@@ -1,20 +1,37 @@
 ---
 - name: Install VIM package
   pacman: name=vim state=present
-  
-- name: Add the vimrc
-  copy: src=vimrc dest=~/.vim/vimrc
-  remote_user: felix
+  remote_user: root
 
 - name: Make directories for swap files
   file: path=~/.vim/tmp/swap/ state=directory mode=0755
-  remote_user: felix
 
 - name: Make directory for backup files.
   file: path=~/.vim/tmp/backup/ state=directory mode=0755
-  remote_user: felix
+
+- name: Add the vimrc
+  copy: src=vimrc dest=~/.vim/vimrc
+
+- name: Install Vundle
+  git: repo=https://github.com/VundleVim/Vundle.vim.git
+       dest=~/.vim/bundle/Vundle.vim
 
 - name: Install stuff using Vundle
-  shell: vim +PluginInstall +qall
-  remote_user: felix
+  command: vim +PluginInstall +qall
+
+- pacman: name=clang state=present
+  remote_user: root
+
+- pacman: name=cmake state=present
+  remote_user: root
+
+- file: path=~/ycm_build state=directory mode=0755
+
+- command: cmake -G "Unix Makefiles" -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+  args:
+    chdir: ~/ycm_build
+
+- command: make ycm_support_libs
+  args:
+    chdir: ~/ycm_build
 
