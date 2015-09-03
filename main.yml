@@ -18,16 +18,6 @@
     - name: Install base development tools
       pacman: name=base-devel state=present
 
-#    - name: Install pip2 for python packages used by ansible
-#      pacman: name=python2-pip state=present
-#
-#    - name: Install virtualenv for python packages used by ansible
-#      pacman: name=python2-virtualenv state=present
-#
-#    - name: Install passlib for encrypted passwords
-#      pip: name=passlib state=present
-#      executable: pip2
-
     - name: Install the user felix
       user: name=felix
             comment="{{full_name}}"
@@ -49,3 +39,4 @@
   roles:
     - zsh
     - vim
+
