@@ -39,4 +39,5 @@
   roles:
     - zsh
     - vim
+    - xmonad
 

@@ -1,0 +1,35 @@
+---
+- name: Install Xorg-server
+  pacman: name=xorg-server state=present
+  remote_user: root
+
+- name: Install Intel Video Driver
+  pacman: name=xf86-video-intel state=present
+  remote_user: root
+
+- name: Install XMonad
+  pacman: name=xmonad state=present
+  remote_user: root
+
+- name: Install XMonad Contrib
+  pacman: name=xmonad-contrib state=present
+  remote_user: root
+
+- name: Make xmonad configuration directory
+  file: path=~/.xmonad/ state=directory mode=0755
+
+- name: Add the XMonad configuration
+  copy: src=xmonad.hs dest=~/.xmonad/xmonad.hs
+
+- name: Compile XMonad
+  command: xmonad --recompile
+
+- name: Add Xinitrc
+  copy: src=xinitrc dest=~/.xinitrc
+
+- name: Add XMobarrc
+  copy: src=xmobarrc dest=~/.xmobarrc
+
+- name: Add XMobar Icons and Scripts
+  copy: src=xmobar/ dest=~/.config/xmobar/
+

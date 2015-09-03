@@ -1,0 +1,11 @@
+---
+- name: Install the XDG User Dirs
+  pacman: name=xdg-user-dirs state=present
+  remote_user: root
+
+- name: Ensure the .config directory
+  file: path=~/.config state=directory mode=0755
+
+- name: Copy the user dirs configuration
+  copy: src=user-dirs.dirs dest=~/.config/user-dirs.dirs
+
