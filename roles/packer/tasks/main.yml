@@ -8,18 +8,9 @@
   when: packer_installed|failed
   git: repo=https://aur.archlinux.org/packer.git dest=/tmp/packer
 
-- name: Determine packer dependencies
-  shell: sed '/^depends=/!d;/)/q' /tmp/packer/PKGBUILD | sed "s/[^']*'//;s/' '/\n/g;s/'.*//"
-  register: dependencies
-
-- name: Install packer dependencies
-  pacman: name={{item}} state=present
-  with_items: "{{dependencies.stdout_lines}}"
-  remote_user: root
-
 - name: Make the packer package
   when: packer_installed|failed
-  command: makepkg -f
+  command: makepkg -f --nodeps
   args:
     chdir: /tmp/packer
 
