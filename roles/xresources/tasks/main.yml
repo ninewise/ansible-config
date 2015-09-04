@@ -1,0 +1,9 @@
+---
+- name: Install xrdb
+  pacman: name=xorg-xrdb state=present
+  remote_user: root
+
+- name: Copy the Xresources
+  copy: src=Xresources dest=~/.config/Xresources
+  notify: Merge Xresources
+

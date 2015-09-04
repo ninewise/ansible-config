@@ -1,0 +1,18 @@
+---
+- name: Install urxvt
+  pacman: name=rxvt-unicode state=present
+  remote_user: root
+
+- name: Install font-zoom plugin
+  shell: echo {{ }} packer --noconfirm --noedit -S urxvt-resize-font-git
+
+- name: Add urxvtd autostart file
+  #copy: src=urxvtd.service dest=~/.config/systemd/user/urxvtd.service
+  copy: src=urxvtd@.service dest=/etc/systemd/system/urxvtd@.service
+  remote_user: root
+
+- name: Enable urxvtd user service
+  #service: name=urxvtd.service enabled=yes arguments="--user"
+  service: name=urxvtd@{{username}}.service enabled=yes
+  remote_user: root
+

@@ -8,7 +8,7 @@
 
   vars_prompt:
     - name: "user_password"
-      prompt: "Enter the password for the felix user"
+      prompt: password for user
       private: yes
       encrypt: "md5_crypt"
       confirm: yes
@@ -18,14 +18,17 @@
     - name: Install base development tools
       pacman: name=base-devel state=present
 
-    - name: Install the user felix
-      user: name=felix
+    - name: Install the user
+      user: name={{username}}
             comment="{{full_name}}"
             password="{{user_password}}"
             groups=wheel,network,uucp,storage,users,audio,optical,power
 
+    - name: Allow wheelers to use sudo
+      copy: src=files/sudoers dest=/etc/sudoers
+
     - name: Move public ssh keys to the authorized keys
-      authorized_key: user=felix key="{{item}}"
+      authorized_key: user={{username}} key="{{item}}"
       with_file:
         - files/noctua-nivalis.pub
 

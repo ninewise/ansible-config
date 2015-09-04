@@ -24,12 +24,25 @@
 - name: Compile XMonad
   command: xmonad --recompile
 
+- name: Get ourselves startx
+  pacman: name=xorg-xinit state=present
+  remote_user: root
+
 - name: Add Xinitrc
   copy: src=xinitrc dest=~/.xinitrc
+
+- name: Install xmobar
+  pacman: name=xmobar state=present
+  remote_user: root
 
 - name: Add XMobarrc
   copy: src=xmobarrc dest=~/.xmobarrc
 
 - name: Add XMobar Icons and Scripts
   copy: src=xmobar/ dest=~/.config/xmobar/
+
+- name: Make XMobar scripts executable
+  file: path={{item}} mode=0755
+  with_fileglob:
+    - ~/.config/xmobar/scripts/*
 

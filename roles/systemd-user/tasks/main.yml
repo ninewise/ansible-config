@@ -1,0 +1,4 @@
+---
+- name: Ensure systemd user directory exists
+  file: path=~/.config/systemd/user state=directory mode=0755
+
