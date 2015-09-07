@@ -2,5 +2,5 @@
 dependencies:
   - { role: systemd-user }
   - { role: xresources }
-  - { role: packer }
+  - { role: packer, package: urxvt-resize-font-git }
 

@@ -1,23 +1,19 @@
 ---
-- name: Check if packer is already installed
-  command: pacman -Qi packer
-  register: packer_installed
+- command: pacman -Qi {{ package }}
+  register: installed
   ignore_errors: True
 
-- name: Download the packer build files
-  when: packer_installed|failed
-  git: repo=https://aur.archlinux.org/packer.git dest=/tmp/packer
+- when: installed|failed
+  git: repo=https://aur.archlinux.org/{{ package }}.git dest=/tmp/{{ package }}
 
-- name: Make the packer package
-  when: packer_installed|failed
+- when: installed|failed
   command: makepkg -f --nodeps
   args:
-    chdir: /tmp/packer
+    chdir: /tmp/{{ package }}
 
-- name: Install the packer package
-  when: packer_installed|failed
-  shell: pacman --noconfirm -U packer*.pkg.tar.xz
+- when: installed|failed
+  shell: pacman --noconfirm -U {{ package }}*.pkg.tar.xz
   remote_user: root
   args:
-    chdir: /tmp/packer
+    chdir: /tmp/{{ package }}
 
