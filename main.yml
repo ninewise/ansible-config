@@ -41,7 +41,8 @@
 
   roles:
     - zsh
-    - vim
-    - ntp
-    - xmonad
+  #  - vim
+  #  - ntp
+  #  - xmonad
+    - programs
 

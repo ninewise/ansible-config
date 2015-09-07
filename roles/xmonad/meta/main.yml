@@ -1,5 +1,4 @@
 ---
 dependencies:
   - { role: xdg-user-dirs }
-  - { role: urxvt }
 

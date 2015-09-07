@@ -6,6 +6,6 @@ dependencies:
     package: urxvt-resize-font-git
     url: "https://aur.archlinux.org/urxvt-resize-font-git.git"
   - role: packer
-    package: otf-adobe-source-code-pro
-    url: "https://aur.archlinux.org/ttf-adobe-source-code-pro.git"
+    package: powerline-fonts-git
+    url: "https://aur.archlinux.org/powerline-fonts-git.git"
 

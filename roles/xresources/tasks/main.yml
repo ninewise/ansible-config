@@ -5,5 +5,4 @@
 
 - name: Copy the Xresources
   copy: src=Xresources dest=~/.config/Xresources
-  notify: Merge Xresources
 
