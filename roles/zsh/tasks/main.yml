@@ -6,3 +6,7 @@
 - name: Add Zsh configuration
   copy: src=zshrc dest=~/.zshrc
 
+- name: Set user default shell to zsh
+  user: name=felix shell=/bin/zsh
+  remote_user: root
+

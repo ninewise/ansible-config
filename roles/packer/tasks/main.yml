@@ -4,7 +4,7 @@
   ignore_errors: True
 
 - when: installed|failed
-  git: repo=https://aur.archlinux.org/{{ package }}.git dest=/tmp/{{ package }}
+  git: repo={{ url }} dest=/tmp/{{ package }}
 
 - when: installed|failed
   command: makepkg -f --nodeps
@@ -16,4 +16,7 @@
   remote_user: root
   args:
     chdir: /tmp/{{ package }}
+
+- when: installed|failed
+  file: path=/tmp/{{ package }} state=absent
 

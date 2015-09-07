@@ -2,5 +2,10 @@
 dependencies:
   - { role: systemd-user }
   - { role: xresources }
-  - { role: packer, package: urxvt-resize-font-git }
+  - role: packer
+    package: urxvt-resize-font-git
+    url: "https://aur.archlinux.org/urxvt-resize-font-git.git"
+  - role: packer
+    package: otf-adobe-source-code-pro
+    url: "https://aur.archlinux.org/ttf-adobe-source-code-pro.git"
 
