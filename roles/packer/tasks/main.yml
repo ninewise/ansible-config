@@ -3,6 +3,10 @@
   register: installed
   ignore_errors: True
 
+- when: installed|failed and makedepends is defined
+  pacman: name={{ item }} state=present
+  with_items: "{{ makedepends }}"
+
 - when: installed|failed
   git: repo={{ url }} dest=/tmp/{{ package }}
 

@@ -1,0 +1,9 @@
+---
+- name: Install Inkscape
+  pacman: name=inkscape state=present
+  remote_user: root
+
+- name: Install Qutebrowser
+  pacman: name=qutebrowser state=present
+  remote_user: root
+

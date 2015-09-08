@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: packer
+    package: qutebrowser
+    url: "https://aur.archlinux.org/qutebrowser.git"
+    makedepends:
+      - asciidoc
+

@@ -18,6 +18,9 @@
     - name: Install base development tools
       pacman: name=base-devel state=present
 
+    - name: Install Python 3
+      pacman: name=python state=present
+
     - name: Install the user
       user: name={{username}}
             comment="{{full_name}}"
