@@ -1,8 +1,8 @@
 ---
 dependencies:
   - role: packer
+    package: python-pypeg2
+
+  - role: packer
     package: qutebrowser
-    url: "https://aur.archlinux.org/qutebrowser.git"
-    makedepends:
-      - asciidoc
 

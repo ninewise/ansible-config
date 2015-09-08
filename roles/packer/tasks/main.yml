@@ -3,12 +3,17 @@
   register: installed
   ignore_errors: True
 
-- when: installed|failed and makedepends is defined
-  pacman: name={{ item }} state=present
-  with_items: "{{ makedepends }}"
+- when: installed|failed
+  git: repo={{ url | default("https://aur.archlinux.org/" + package + ".git") }} dest=/tmp/{{ package }}
 
 - when: installed|failed
-  git: repo={{ url }} dest=/tmp/{{ package }}
+  shell: 'source /tmp/{{ package }}/PKGBUILD; for d in ${makedepends[@]}; do echo $d; done'
+  register: makedepends
+
+- when: installed|failed
+  pacman: name={{ item }} state=present
+  remote_user: root
+  with_items: "{{ makedepends.stdout_lines | default([]) }}"
 
 - when: installed|failed
   command: makepkg -f --nodeps

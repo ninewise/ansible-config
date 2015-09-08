@@ -21,6 +21,9 @@
     - name: Install Python 3
       pacman: name=python state=present
 
+    - name: Install Python setuptools
+      pacman: name=python-setuptools state=present
+
     - name: Install the user
       user: name={{username}}
             comment="{{full_name}}"
@@ -44,8 +47,8 @@
 
   roles:
     - zsh
-  #  - vim
-  #  - ntp
-  #  - xmonad
+    - vim
+    - ntp
+    - xmonad
     - programs
 
