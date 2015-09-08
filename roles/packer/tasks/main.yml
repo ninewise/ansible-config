@@ -12,7 +12,7 @@
 
 - when: installed|failed
   pacman: name={{ item }} state=present
-  remote_user: root
+  become: yes
   with_items: "{{ makedepends.stdout_lines | default([]) }}"
 
 - when: installed|failed
@@ -22,7 +22,7 @@
 
 - when: installed|failed
   shell: pacman --noconfirm -U {{ package }}*.pkg.tar.xz
-  remote_user: root
+  become: yes
   args:
     chdir: /tmp/{{ package }}
 

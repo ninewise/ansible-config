@@ -1,7 +1,7 @@
 ---
 - name: Install the XDG User Dirs
   pacman: name=xdg-user-dirs state=present
-  remote_user: root
+  become: yes
 
 - name: Ensure the .config directory
   file: path=~/.config state=directory mode=0755

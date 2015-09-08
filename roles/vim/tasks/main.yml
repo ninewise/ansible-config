@@ -1,7 +1,7 @@
 ---
 - name: Install VIM package
   pacman: name=vim state=present
-  remote_user: root
+  become: yes
 
 - name: Make directories for swap files
   file: path=~/.vim/tmp/swap/ state=directory mode=0755
@@ -20,10 +20,10 @@
   command: vim +PluginInstall +qall
 
 - pacman: name=clang state=present
-  remote_user: root
+  become: yes
 
 - pacman: name=cmake state=present
-  remote_user: root
+  become: yes
 
 - file: path=~/ycm_build state=directory mode=0755
 

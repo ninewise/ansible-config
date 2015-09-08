@@ -1,7 +1,7 @@
 ---
 - name: Install git
   pacman: name=git state=present
-  remote_user: root
+  become: yes
 
 - name: Configure git username
   template: src=gitconfig dest=~/.gitconfig

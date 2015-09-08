@@ -1,19 +1,19 @@
 ---
 - name: Install Xorg-server
   pacman: name=xorg-server state=present
-  remote_user: root
+  become: yes
 
 - name: Install Intel Video Driver
   pacman: name=xf86-video-intel state=present
-  remote_user: root
+  become: yes
 
 - name: Install XMonad
   pacman: name=xmonad state=present
-  remote_user: root
+  become: yes
 
 - name: Install XMonad Contrib
   pacman: name=xmonad-contrib state=present
-  remote_user: root
+  become: yes
 
 - name: Make xmonad configuration directory
   file: path=~/.xmonad/ state=directory mode=0755
@@ -26,14 +26,14 @@
 
 - name: Get ourselves startx
   pacman: name=xorg-xinit state=present
-  remote_user: root
+  become: yes
 
 - name: Add Xinitrc
   copy: src=xinitrc dest=~/.xinitrc
 
 - name: Install xmobar
   pacman: name=xmobar state=present
-  remote_user: root
+  become: yes
 
 - name: Add XMobarrc
   copy: src=xmobarrc dest=~/.xmobarrc

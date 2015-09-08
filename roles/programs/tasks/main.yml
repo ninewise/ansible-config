@@ -1,5 +1,5 @@
 ---
 - name: Install Inkscape
   pacman: name=inkscape state=present
-  remote_user: root
+  become: yes
 
