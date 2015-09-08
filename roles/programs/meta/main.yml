@@ -1,5 +1,7 @@
 ---
 dependencies:
+  - { role: mpd }
+
   - role: packer
     package: python-pypeg2
 

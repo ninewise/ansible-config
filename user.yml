@@ -7,9 +7,9 @@
     - vars/main.yml
 
   roles:
-    - zsh
-    - vim
-    - ntp
-    - xmonad
+  #- zsh
+  #- vim
+  #- ntp
+  #- xmonad
     - programs
 

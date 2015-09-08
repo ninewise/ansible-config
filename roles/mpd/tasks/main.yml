@@ -1,0 +1,24 @@
+---
+- name: Install MPD
+  pacman: name=mpd state=present
+  become: yes
+
+- name: Configure MPD
+  copy: src=mpd.conf dest=~/.config/mpd/mpd.conf
+
+- file: path={{ item }} state=directory mode=0755
+  with_items:
+    - ~/Music
+    - ~/.config/mpd/playlists
+
+- file: path={{ item }} state=touch
+  with_items:
+    - ~/.config/mpd/database
+    - ~/.config/mpd/log
+    - ~/.config/mpd/pid
+    - ~/.config/mpd/state
+    - ~/.config/mpd/sticker.sql
+
+- name: Enable MPD service
+  command: systemctl --user enable mpd.service
+
