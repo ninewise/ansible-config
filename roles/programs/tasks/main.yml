@@ -3,3 +3,7 @@
   pacman: name=inkscape state=present
   become: yes
 
+- name: Install MPV
+  pacman: name=mpv state=present
+  become: yes
+
